@@ -39,6 +39,13 @@ func getPasswordParts(pwinput string) (PasswordParts) {
 	return PasswordParts{min, max, letter, password}
 }
 
+func matches(letter string, password string, pos int) (bool) {
+	if string(password[pos - 1]) == letter {
+		return true
+	}
+	return false
+}
+
 func main() {
 	file, err := os.Open("input.txt")
  
@@ -56,12 +63,18 @@ func main() {
 	}
 
 	validPasswords := 0
+	validPasswordsPart2 := 0
 	for _, pwinput := range input {
 		parts := getPasswordParts(pwinput)
 		letterCount := strings.Count(parts.Password, parts.Letter)
 		if letterCount >= parts.MinOccurrence && letterCount <= parts.MaxOccurrence {
 			validPasswords++
 		}
+		minMatch := matches(parts.Letter, parts.Password, parts.MinOccurrence)
+		maxMatch := matches(parts.Letter, parts.Password, parts.MaxOccurrence)
+		if (minMatch != maxMatch) {
+			validPasswordsPart2++
+		}
 	}
-	fmt.Printf("Valid Passwords: %d\n", validPasswords)
+	fmt.Printf("Valid Passwords: %d\nValid Passwords Part 2: %d\n", validPasswords, validPasswordsPart2)
 }
