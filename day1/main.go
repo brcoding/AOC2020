@@ -8,6 +8,12 @@ import (
 )
 
 func main() {
+	var (
+		answerP1 int
+		answerP2 int
+	)
+	year := 2020
+
 	file, err := os.Open("input.txt")
  
 	if err != nil {
@@ -23,24 +29,19 @@ func main() {
 		input = append(input, number)
 	}
 
-	part2 := true
-	year := 2020
 	for _, i := range input {
 		for _, ix := range input {
-			if part2 {
-				for _, iy := range input {
-					if i + ix + iy == year {
-						fmt.Printf("Answer: %d\n", i*ix*iy)
-						return
-					}
+			for _, iy := range input {
+				if i + ix + iy == year {
+					answerP2 = i * ix * iy
+					break
 				}
-			} else {
-				if i+ix == year {
-					fmt.Printf("Answer: %d\n", i*ix)
-					return
-				}				
 			}
+			if i + ix == year {
+				answerP1 = i * ix
+				break
+			}				
 		}
 	}
-
+	fmt.Printf("Answer Part 1: %d\nAnswer Part 2: %d\n", answerP1, answerP2)
 }
