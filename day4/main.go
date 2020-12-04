@@ -13,18 +13,6 @@ import (
     "gopkg.in/validator.v2"
 )
 
-
-// type Passport struct {
-//     Byr int `validate:"min=1920,max=2002"`
-//     Iyr int `validate:"min=2010,max=2020"`
-//     Eyr int `validate:"min=2020,max=2030"`
-//     Hgt string `validate:"checkheight"`
-//     Hcl string `validate:"regexp=^#[0-9a-fA-F]{6}"`
-//     Ecl string `validate:"regexp=^(amb|blu|gry|grn|hzl|oth)$"`
-//     Pid string `validate:"regexp=^\d{9}$"`
-//     Cid string
-// }
-
 type Passport struct {
     Byr int `validate:"min=1920,max=2002"`
     Iyr int `validate:"min=2010,max=2020"`
